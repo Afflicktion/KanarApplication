@@ -13,7 +13,7 @@ AIRTABLE_API_KEY = ''
 
 def load_api_key():
     global AIRTABLE_API_KEY
-    f = open("./api.txt","r")
+    f = open("./API.txt","r")
     AIRTABLE_API_KEY = f.read()
     f.close()
 
