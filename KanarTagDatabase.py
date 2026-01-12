@@ -9,15 +9,14 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 
-AIRTABLE_API_KEY = ''
-
 def load_api_key():
-    global AIRTABLE_API_KEY
     script_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(script_dir, 'api.txt')
     f = open(file_path,"r")
-    AIRTABLE_API_KEY = f.read()
+    retval = f.read().strip()
     f.close()
+
+    return retval
 
 class AirtableTag:
     def __init__(self, api_key: str, base_id: str, table_name: str):    
@@ -83,7 +82,7 @@ class ApiViewer(QMainWindow):
         BASE_ID = os.getenv("AIRTABLE_BASE_ID", "appswDASXoosJEY2V")
         TABLE_NAME = "tblN9Rps7VLx59JL0"
 
-        client = AirtableTag(AIRTABLE_API_KEY, BASE_ID, TABLE_NAME)
+        client = AirtableTag(load_api_key(), BASE_ID, TABLE_NAME)
         data = client.fetch_data()
 
 
