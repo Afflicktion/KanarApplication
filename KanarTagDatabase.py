@@ -13,7 +13,9 @@ AIRTABLE_API_KEY = ''
 
 def load_api_key():
     global AIRTABLE_API_KEY
-    f = open("api.txt","r")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, 'api.txt')
+    f = open(file_path,"r")
     AIRTABLE_API_KEY = f.read()
     f.close()
 
